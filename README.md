@@ -1,10 +1,10 @@
 # TodoIt Application
 
-## Beskrivning
+## Description
 
-TodoIt är en Java-applikation som hjälper användare att hantera sina uppgifter. Användare kan skapa, uppdatera, visa och radera uppgifter. Varje uppgift kan tilldelas till en person.
+TodoIt is a Java application that helps users manage their tasks. Users can create, update, view, and delete tasks. Each task can be assigned to a person.
 
-## Teknologier
+## Technologies
 
 - Java
 - JDBC
@@ -13,21 +13,21 @@ TodoIt är en Java-applikation som hjälper användare att hantera sina uppgifte
 
 ## Installation
 
-1. Klona detta repo till din lokala maskin med `git clone <repo-url>`.
-2. Öppna projektet i din favorit-IDE (t.ex. IntelliJ IDEA).
-3. Kör `mvn clean install` för att bygga projektet och installera alla nödvändiga beroenden.
+1. Clone this repo to your local machine using `git clone <repo-url>`.
+2. Open the project in your favorite IDE (e.g., IntelliJ IDEA).
+3. Run `mvn clean install` to build the project and install all necessary dependencies.
 
-## Användning
+## Usage
 
-För att starta applikationen, kör `App.java` i `se.lexicon`-paketet.
+To start the application, run `App.java` in the `se.lexicon` package.
 
-## Funktioner
+## Features
 
-- Skapa en ny användare
-- Skapa en ny uppgift
-- Visa alla uppgifter för en användare
-- Radera en användare och alla deras uppgifter
-- Radera en uppgift
-- Uppdatera en användares information
-- Uppdatera en uppgift
-- Markera en uppgift som klar
+- Create a new user
+- Create a new task
+- View all tasks for a user
+- Delete a user and all their tasks
+- Delete a task
+- Update a user's information
+- Update a task
+- Mark a task as done
