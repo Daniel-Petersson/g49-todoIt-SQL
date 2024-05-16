@@ -4,10 +4,7 @@ import se.lexicon.Exception.MySQLException;
 import se.lexicon.dao.TodoItemsDao;
 import se.lexicon.model.TodoItem;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -20,12 +17,20 @@ public class TodoItemsDaoImpl implements TodoItemsDao {
         this.connection = connection;
     }
 
-    @Override
+@Override
 public Optional<TodoItem> create(TodoItem model) {
-    String query = "INSERT INTO todo_item (title, description) VALUES (?, ?)";
+    if (model.getCreator() == null) {
+        throw new IllegalArgumentException("Creator cannot be null");
+    }
+    String query = "INSERT INTO todo_item (title, description, deadline, done, assignee_id) VALUES (?,?,?,?,?)";
     try (PreparedStatement preparedStatement = connection.prepareStatement(query, PreparedStatement.RETURN_GENERATED_KEYS)) {
         preparedStatement.setString(1, model.getTitle());
         preparedStatement.setString(2, model.getDescription());
+        java.sql.Date sqlDate = java.sql.Date.valueOf(model.getDeadline());
+        java.sql.Timestamp sqlTimestamp = new java.sql.Timestamp(sqlDate.getTime());
+        preparedStatement.setTimestamp(3, sqlTimestamp);
+        preparedStatement.setBoolean(4, model.isDone());
+        preparedStatement.setInt(5,model.getCreator().getId());
         int numberOfRowsInserted = preparedStatement.executeUpdate();
         if (numberOfRowsInserted > 0) {
             try (ResultSet generatedKeys = preparedStatement.getGeneratedKeys()) {
@@ -43,7 +48,7 @@ public Optional<TodoItem> create(TodoItem model) {
 
 @Override
 public Optional<TodoItem> findById(Integer id) {
-    String query = "SELECT * FROM todo_item WHERE id = ?";
+    String query = "SELECT * FROM todo_item WHERE todo_id = ?";
     try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
         preparedStatement.setInt(1, id);
         try (ResultSet resultSet = preparedStatement.executeQuery()) {
@@ -91,7 +96,7 @@ public List<TodoItem> findAll() {
 
 @Override
 public boolean deleteById(Integer id) {
-    String query = "DELETE FROM todo_item WHERE id = ?";
+    String query = "DELETE FROM todo_item WHERE todo_id = ?";
     try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
         preparedStatement.setInt(1, id);
         int rowsDeleted = preparedStatement.executeUpdate();
@@ -103,7 +108,7 @@ public boolean deleteById(Integer id) {
 
 @Override
 public TodoItem update(TodoItem model) {
-    String query = "UPDATE todo_item SET title = ?, description = ? WHERE id = ?";
+    String query = "UPDATE todo_item SET title = ?, description = ? WHERE todo_id = ?";
     try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
         preparedStatement.setString(1, model.getTitle());
         preparedStatement.setString(2, model.getDescription());
@@ -119,9 +124,9 @@ public TodoItem update(TodoItem model) {
 }
 
 private TodoItem getTodoItem(ResultSet resultSet) throws SQLException {
-    int id = resultSet.getInt("id");
+    int id = resultSet.getInt("todo_id");
     String title = resultSet.getString("title");
     String description = resultSet.getString("description");
-    return new TodoItem(id, title, description);
+    return new TodoItem(id,title,description);
 }
 }
