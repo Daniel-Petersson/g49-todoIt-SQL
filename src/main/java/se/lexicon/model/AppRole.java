@@ -1,6 +1,6 @@
 package se.lexicon.model;
 
-public enum Role {
+public enum AppRole {
     ROLE_ADMIN,
     ROLE_USER;
 }
