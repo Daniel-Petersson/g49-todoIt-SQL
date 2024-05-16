@@ -1,17 +1,24 @@
 package se.lexicon.model;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+
 
 public class TodoItem {
     private int id;
     private String title;
     private String description;
-    private LocalDateTime deadline;
+    private LocalDate deadline;
     private boolean done;
     private Person creator;
 
     //Constructors
 
+
+    public TodoItem(String title, String description, LocalDate deadline) {
+        this.title = title;
+        this.description = description;
+        this.deadline = deadline;
+    }
 
     public TodoItem(int id, String title, String description) {
         this.id = id;
@@ -19,7 +26,7 @@ public class TodoItem {
         this.description = description;
     }
 
-    public TodoItem(String title, String description, LocalDateTime deadline, boolean done, Person creator) {
+    public TodoItem(String title, String description, LocalDate deadline, boolean done, Person creator) {
         this.title = title;
         this.description = description;
         this.deadline = deadline;
@@ -59,11 +66,11 @@ public class TodoItem {
         this.description = description;
     }
 
-    public LocalDateTime getDeadline() {
+    public LocalDate getDeadline() {
         return deadline;
     }
 
-    public void setDeadline(LocalDateTime deadline) {
+    public void setDeadline(LocalDate deadline) {
         this.deadline = deadline;
     }
 
@@ -82,4 +89,27 @@ public class TodoItem {
     public void setCreator(Person creator) {
         this.creator = creator;
     }
+
+    public String todoInfo(){
+        return "TodoItem id: "+getId()+
+                "\n Title: " +getTitle()+
+                "\n Title: " +getDeadline()+
+                "\n Title: " +getDescription()+
+                "\n Title: " +getCreator();
+
+    }
+
+    @Override
+public String toString() {
+    return "TodoItem{" +
+            "id=" + id +
+            ", title='" + title + '\'' +
+            ", description='" + description + '\'' +
+            ", deadline=" + deadline +
+            ", done=" + done +
+            ", creator=" + getCreator() +
+            '}';
 }
+
+}
+
