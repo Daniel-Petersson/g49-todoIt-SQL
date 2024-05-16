@@ -13,10 +13,12 @@ public class Person {
         this.lastName = lastName;
     }
 
+    public Person(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
 
-
-
-    //Getters & Setters
+//Getters & Setters
 
     public int getId() {
         return id;
@@ -40,5 +42,12 @@ public class Person {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String personInfo(){
+        return "Person id: "+getId()+
+                "\n First name: "+getFirstName()+
+                "\n Last name: "+getLastName();
+
     }
 }
