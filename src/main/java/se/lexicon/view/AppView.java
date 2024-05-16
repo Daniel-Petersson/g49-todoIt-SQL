@@ -1,17 +1,25 @@
 package se.lexicon.view;
 
+import se.lexicon.model.Person;
+import se.lexicon.model.TodoItem;
+
 public interface AppView {
 
     void displayMenu();
 
-    int getMenuChoice();
+    void displayPerson(Person person);
 
-    String promoteString(String prompt);
+    void displayTodoItem(TodoItem todoItem);
 
-    int promotePerson(String prompt);
+    default void displayMessage(String message) {
+        System.out.println(message);
+    }
 
-    int promoteTodoItem(String prompt);
+    String promoteString();
 
-    void displayMessage(String message);
+    Person promotePersonForm();
+
+    TodoItem promoteTodoItemForm();
+
 
 }
