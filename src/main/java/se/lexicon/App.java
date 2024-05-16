@@ -18,7 +18,7 @@ public class App {
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/todoit", "root", "1234");
             AppView view = new ConsoleUI();
             PeopleDao peopleDao = new PeopleDaoImpl(connection);
-            TodoItemsDao todoItemsDao = new TodoItemsDaoImpl(connection);
+            TodoItemsDao todoItemsDao = new TodoItemsDaoImpl(connection,peopleDao);
             TodoController todoController = new TodoController(view, peopleDao, todoItemsDao);
             todoController.run();
         } catch (SQLException e) {
