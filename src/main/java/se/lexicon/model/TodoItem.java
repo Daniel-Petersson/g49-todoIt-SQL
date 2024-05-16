@@ -5,14 +5,35 @@ import java.time.LocalDateTime;
 public class TodoItem {
     private int id;
     private String title;
-    private String taskDescription;
+    private String description;
     private LocalDateTime deadline;
     private boolean done;
     private Person creator;
 
     //Constructors
 
+
+    public TodoItem(int id, String title, String description) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+    }
+
+    public TodoItem(String title, String description, LocalDateTime deadline, boolean done, Person creator) {
+        this.title = title;
+        this.description = description;
+        this.deadline = deadline;
+        this.done = done;
+        this.creator = creator;
+    }
+
+
+
+
+
+
     //Getters and Setters
+
 
     public int getId() {
         return id;
@@ -30,12 +51,12 @@ public class TodoItem {
         this.title = title;
     }
 
-    public String getTaskDescription() {
-        return taskDescription;
+    public String getDescription() {
+        return description;
     }
 
-    public void setTaskDescription(String taskDescription) {
-        this.taskDescription = taskDescription;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public LocalDateTime getDeadline() {
