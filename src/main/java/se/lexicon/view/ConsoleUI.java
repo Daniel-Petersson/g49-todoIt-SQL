@@ -23,7 +23,8 @@ public class ConsoleUI implements AppView {
         System.out.println("4. Delete Task");
         System.out.println("5. Update User");
         System.out.println("6. Update Task");
-        System.out.println("7. Exit");
+        System.out.println("7. Mark Task as done");
+        System.out.println("8. Exit");
         System.out.print("Enter choice: ");
     }
 
@@ -70,4 +71,11 @@ public class ConsoleUI implements AppView {
         return scanner.nextLine();
     }
 
+    @Override
+    public boolean promoteDoneStatus() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Do you want to mark the task as done? (yes/no)");
+        String response = scanner.nextLine();
+        return response.equalsIgnoreCase("yes");
+    }
 }

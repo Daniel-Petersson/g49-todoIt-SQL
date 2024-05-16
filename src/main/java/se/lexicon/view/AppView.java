@@ -21,5 +21,6 @@ public interface AppView {
 
     TodoItem promoteTodoItemForm();
 
+    boolean promoteDoneStatus();
 
 }
