@@ -50,4 +50,13 @@ public class Person {
                 "\n Last name: "+getLastName();
 
     }
+
+    @Override
+public String toString() {
+    return "Person{" +
+        "id=" + id +
+        ", firstName='" + firstName + '\'' +
+        ", lastName='" + lastName + '\'' +
+        '}';
+}
 }

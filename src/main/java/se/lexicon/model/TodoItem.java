@@ -9,7 +9,7 @@ public class TodoItem {
     private String description;
     private LocalDate deadline;
     private boolean done;
-    private Person creator;
+    private Person assignee;
 
     //Constructors
 
@@ -26,18 +26,22 @@ public class TodoItem {
         this.description = description;
     }
 
-    public TodoItem(String title, String description, LocalDate deadline, boolean done, Person creator) {
+    public TodoItem(String title, String description, LocalDate deadline, boolean done, Person assignee) {
         this.title = title;
         this.description = description;
         this.deadline = deadline;
         this.done = done;
-        this.creator = creator;
+        this.assignee = assignee;
     }
 
-
-
-
-
+    public TodoItem(int id, String title, String description, LocalDate deadline, boolean done, Person assignee) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.deadline = deadline;
+        this.done = done;
+        this.assignee = assignee;
+    }
 
     //Getters and Setters
 
@@ -82,12 +86,12 @@ public class TodoItem {
         this.done = done;
     }
 
-    public Person getCreator() {
-        return creator;
+    public Person getAssignee() {
+        return assignee;
     }
 
-    public void setCreator(Person creator) {
-        this.creator = creator;
+    public void setAssignee(Person assignee) {
+        this.assignee = assignee;
     }
 
     public String todoInfo(){
@@ -95,19 +99,19 @@ public class TodoItem {
                 "\n Title: " +getTitle()+
                 "\n Title: " +getDeadline()+
                 "\n Title: " +getDescription()+
-                "\n Title: " +getCreator();
+                "\n Title: " + getAssignee();
 
     }
 
     @Override
 public String toString() {
     return "TodoItem{" +
-            "id=" + id +
-            ", title='" + title + '\'' +
-            ", description='" + description + '\'' +
-            ", deadline=" + deadline +
-            ", done=" + done +
-            ", creator=" + getCreator() +
+            "Id=" + id +
+            ", Title='" + title + '\'' +
+            ", Description='" + description + '\'' +
+            ", Deadline=" + deadline +
+            ", done=" + (done ? "Done" : "Not Done") +
+            ", Assignee=" + getAssignee() +
             '}';
 }
 
