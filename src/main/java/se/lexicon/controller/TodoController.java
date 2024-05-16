@@ -22,6 +22,7 @@ public class TodoController {
         this.todoItemsDao = todoItemsDao;
     }
 
+    //Todo add assignnee to task. Set done deafault to false. create method to mark task done. Display all users, and the view there task.
     public void run() {
     boolean running = true;
     while (running) {
