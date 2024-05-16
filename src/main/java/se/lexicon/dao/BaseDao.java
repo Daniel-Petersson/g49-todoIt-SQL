@@ -1,11 +1,14 @@
 package se.lexicon.dao;
 
+import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 public interface BaseDao<T> {
-    T create(T model);
-    T findById(Integer id);
-    boolean deleteById(Integer id);
-    void update(T model);
+    Optional<T> create(T model);
+    Optional<T> findById(Integer id);
+    Collection<T> find(String input);
     List<T> findAll();
+    boolean deleteById(Integer id);
+    T update(T model);
 }
